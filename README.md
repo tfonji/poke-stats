@@ -1,5 +1,5 @@
 #[poké-stats](https://tfonji.github.io/poke-stats/)
-This website is a single page application I created
+This website is a single page application, using data from the pokeapi.co website to build charts comparing 6 pokemons in terms of weight, body mass index, height and other traits.
 
 ## Project Files and Folders
 - index.html
