@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+img,
+embed,
+object,
+video {
+    max-width: 100%;
+}
+
+body {
+	background-color: #F5F5F5;
+}
+.chart-window {
+	min-height: 100px;
+	min-width: 100px;
+}
+
+#navbar-color {
+    background-color: #FFD54F;
+}
+#set-height {
+    height: 60px;
+}
+
+.poke-stats {
+	padding-top:7px;
+	margin-top: 8px;
+	padding-left: 12px;
+	margin-left: 6px;
+	padding-right: 12px;
+	margin-right: 6px;
+}
+
+.align-right {
+    text-align: right;
+    float: right;
+}
+
+.btn-success {
+	border-color: #37474F;
+	background-color: #37474F;
+}
+
+.btn-info {
+	border-color: #37474F;
+	background-color: #37474F;
+}
+
+.btn-primary {
+	border-color: #004D40;
+	background-color: #004D40;
+}
+
+.bottom-charts {
+	margin-top: 20px;
+	padding-top: 20px;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+}

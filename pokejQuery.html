@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+ 
+  <script type="text/javascript">
+    $.ajax({
+    	method: "GET",
+    	url : "https://pokeapi.co/api/v2/pokemon/pikachu/",
+    	success : function(dog){
+    		console.log(dog);
+    	}
+    })
+  </script>
+
+</body>
+</html>
