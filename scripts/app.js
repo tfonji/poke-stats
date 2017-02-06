@@ -13,7 +13,7 @@ global.pokeData = [];
 
 $(document).ready(function(){
 	$("#submitButton").click(function() {
-		var input = $("#userInput").val().split(",", 6);
+		var input = $("#userInput").val().split(",");
 		var ctx = document.getElementById("myChart");
 		var weights = [];
 		console.log(input);
@@ -31,7 +31,7 @@ $(document).ready(function(){
 		    	if(global.count === input.length){
 		    		$("#plotGraph").removeClass("hidden");
 		    	}
-		    	//$("#pokemonName").html(data.weight);
+		    	
 		    	}
 		    })
 				
@@ -45,11 +45,22 @@ $(document).ready(function(){
 		/*Stats*/
 		//stats - line chart
 		var ctxLineChart = document.getElementById("lineChart");
+		var pokeMoves = [];
+		var baseExp = [];
+		var gameIndices = [];
+		var lineLabels = [];
+		var chartColors = [];
+		for(index = 0; index < global.pokeData.length; index++){
+			pokeMoves[index] = global.pokeData[index].moves.length;
+			baseExp[index] = global.pokeData[index].base_experience;
+			gameIndices[index] = global.pokeData[index].game_indices.length;
+			lineLabels[index] = global.pokeData[index].name;
+			chartColors[index] = '#'+Math.floor(Math.random()*16777215).toString(16);
+			
+		}
 		
 		var lineData = {
-			    labels: [global.pokeData[0].name, global.pokeData[1].name,
-		    	         global.pokeData[2].name, global.pokeData[3].name,
-		    	         global.pokeData[4].name, global.pokeData[5].name],
+			    labels: lineLabels,
 			    datasets: [
 			        {
 			            label: "Moves",
@@ -70,9 +81,7 @@ $(document).ready(function(){
 			            pointHoverBorderWidth: 2,
 			            pointRadius: 1,
 			            pointHitRadius: 10,
-			            data: [global.pokeData[0].moves.length, global.pokeData[1].moves.length,
-			            	   global.pokeData[2].moves.length, global.pokeData[3].moves.length,
-			            	   global.pokeData[4].moves.length, global.pokeData[5].moves.length],
+			            data: pokeMoves,
 			            spanGaps: false,
 			        },
 			        {
@@ -94,9 +103,7 @@ $(document).ready(function(){
 			            pointHoverBorderWidth: 2,
 			            pointRadius: 1,
 			            pointHitRadius: 10,
-			            data: [global.pokeData[0].base_experience, global.pokeData[1].base_experience,
-			            	   global.pokeData[2].base_experience, global.pokeData[3].base_experience,
-			            	   global.pokeData[4].base_experience, global.pokeData[5].base_experience],
+			            data: baseExp,
 			            spanGaps: false,
 			        },
 			        {
@@ -118,9 +125,7 @@ $(document).ready(function(){
 			            pointHoverBorderWidth: 2,
 			            pointRadius: 1,
 			            pointHitRadius: 10,
-			            data: [global.pokeData[0].game_indices.length, global.pokeData[1].game_indices.length,
-			            	   global.pokeData[2].game_indices.length, global.pokeData[3].game_indices.length,
-			            	   global.pokeData[4].game_indices.length, global.pokeData[5].game_indices.length],
+			            data: gameIndices,
 			            spanGaps: false,
 			        }
 			    ]
@@ -134,36 +139,20 @@ $(document).ready(function(){
 		
 		/* Health Charts*/
 		//Body Mass Index - Doughnut
-		var bmiOne = Math.floor((global.pokeData[0].weight * 0.45)/(global.pokeData[0].height * 12 * 12 * global.pokeData[0].height * 0.025 * 0.025));
-		var bmiTwo = Math.floor((global.pokeData[1].weight * 0.45)/(global.pokeData[1].height * 12 * 12 * global.pokeData[1].height * 0.025 * 0.025));
-		var bmiThree = Math.floor((global.pokeData[2].weight * 0.45)/(global.pokeData[2].height * 12 * 12 * global.pokeData[2].height * 0.025 * 0.025));
-		var bmiFour = Math.floor((global.pokeData[3].weight * 0.45)/(global.pokeData[3].height * 12 * 12 * global.pokeData[3].height * 0.025 * 0.025));
-		var bmiFive = Math.floor((global.pokeData[4].weight * 0.45)/(global.pokeData[4].height * 12 * 12 * global.pokeData[4].height * 0.025 * 0.025));
-		var bmiSix = Math.floor((global.pokeData[5].weight * 0.45)/(global.pokeData[5].height * 12 * 12 * global.pokeData[5].height * 0.025 * 0.025));
+		var lineLabels = [];
+		var bmi = [];
+		for(index = 0; index < global.pokeData.length; index++){
+			bmi[index] = Math.floor((global.pokeData[index].weight * 0.45)/(global.pokeData[index].height * 12 * 12 * global.pokeData[index].height * 0.025 * 0.025));
+			lineLabels[index] = global.pokeData[index].name;
+		}
 		
 		var doughnutData = {
-			    labels: [global.pokeData[0].name, global.pokeData[1].name,
-		    	         global.pokeData[2].name, global.pokeData[3].name,
-		    	         global.pokeData[4].name, global.pokeData[5].name],
+			    labels: lineLabels,
 			    datasets: [
 			        {
-			        	data: [bmiOne, bmiTwo, bmiThree, bmiFour, bmiFive, bmiSix],
-			            backgroundColor: [
-			                "#FF6384",
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#2E7D32",
-			                "#9C27B0",
-			                "#FB8C00"
-			            ],
-			            hoverBackgroundColor: [
-			                "#FF6384",
-			                "#36A2EB",
-			                "#FFCE56",
-			                "#2E7D32",
-			                "#9C27B0",
-			                "#FB8C00"
-			            ]
+			        	data: bmi,
+			            backgroundColor: chartColors,
+			            hoverBackgroundColor: chartColors
 			        }]
 			};
 		var ctxDoughnut = document.getElementById("doughnutChart");
@@ -176,25 +165,19 @@ $(document).ready(function(){
 		
 		//Heights - polar chart
 		var ctxPolar = document.getElementById("polarChart");
-		
+		var heightData = [];
+		var heightLabels = [];
+		for(index = 0; index < global.pokeData.length; index++){
+			heightLabels[index] = global.pokeData[index].name;
+			heightData[index] = global.pokeData[index].height;
+		}
 		var polarData = {
 			    datasets: [{
-			        data: [global.pokeData[0].height, global.pokeData[1].height,
-			        	   global.pokeData[2].height, global.pokeData[3].height,
-			        	   global.pokeData[4].height, global.pokeData[5].height],
-			        backgroundColor: [
-			            "#FF6384",
-			            "#4BC0C0",
-			            "#FFCE56",
-			            "#E7E9ED",
-			            "#36A2EB",
-			            "#00695C"
-			        ],
+			        data: heightData,
+			        backgroundColor: chartColors,
 			        label: 'PokeHeights' // for legend
 			    }],
-			    labels: [global.pokeData[0].name, global.pokeData[1].name,
-			    	     global.pokeData[2].name, global.pokeData[3].name,
-			    	     global.pokeData[4].name, global.pokeData[5].name]
+			    labels: heightLabels
 			};
 		
 		new Chart(ctxPolar, {
@@ -206,31 +189,22 @@ $(document).ready(function(){
 		
 		//weights
 		var ctx = document.getElementById("barChart");
+		var weightLabel = [];
+		var weightData = [];
+		for(index = 0; index < global.pokeData.length; index++){
+			weightLabel[index] = global.pokeData[index].name;
+			weightData[index] = global.pokeData[index].weight;
+		}
 		var myChart = new Chart(ctx, {
 			
 			type: 'bar',
 		    data: {
-		        labels: [global.pokeNames[0], global.pokeNames[1], global.pokeNames[2],
-		        	     global.pokeNames[3], global.pokeNames[4], global.pokeNames[5]],
+		        labels: weightLabel,
 		        datasets: [{
 		            label: 'PokeWeights',
-		            data: global.weights,
-		            backgroundColor: [
-		                'rgba(255, 99, 132, 0.2)',
-		                'rgba(54, 162, 235, 0.2)',
-		                'rgba(255, 206, 86, 0.2)',
-		                'rgba(75, 192, 192, 0.2)',
-		                'rgba(153, 102, 255, 0.2)',
-		                'rgba(255, 159, 64, 0.2)'
-		            ],
-		            borderColor: [
-		                'rgba(255,99,132,1)',
-		                'rgba(54, 162, 235, 1)',
-		                'rgba(255, 206, 86, 1)',
-		                'rgba(75, 192, 192, 1)',
-		                'rgba(153, 102, 255, 1)',
-		                'rgba(255, 159, 64, 1)'
-		            ],
+		            data: weightData,
+		            backgroundColor: chartColors,
+		            borderColor: chartColors,
 		            borderWidth: 1
 		        }]
 		    },
@@ -248,23 +222,8 @@ $(document).ready(function(){
 		$("#submitButton").addClass("hidden");
 		$("#refresh").removeClass("hidden");
 		$("#userInput").addClass("hidden");
+		$("#top-label").removeClass("hidden");
+		$("#bottom-label").removeClass("hidden");
 		});
 });
 
-/*$(document).ready(function(){
-	$("#submitButton").click(function() {
-		
-	  var input = $("#userInput").val();
-	  
-	  $.ajax({
-	    	method: "GET",
-	    	url : "https://pokeapi.co/api/v2/pokemon/" + input + "/",
-	    	success : function(data){
-	 
-	    		console.log(data);
-	    		$("#pokemonName").html(data.weight);
-	    	}
-	    })
-
-	})
-});*/
