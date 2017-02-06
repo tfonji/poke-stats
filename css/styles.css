@@ -51,14 +51,18 @@ body {
 }
 
 .bottom-charts {
-	margin-top: 20px;
-	padding-top: 20px;
+	margin-top: 0;
+	padding-top: 0;
 	margin-bottom: 20px;
 	padding-bottom: 20px;
 }
 .top-charts {
-	margin-top: 20px;
-	padding-top: 20px;
+	margin-top: 0;
+	padding-top: 0;
 	margin-bottom: 20px;
 	padding-bottom: 20px;
+}
+
+.chart-labels {
+	text-align: center;
 }
