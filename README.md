@@ -13,7 +13,7 @@ In this project, one CSS framework was implemented:
 - Bootstrap
 
 ## How to run
-The webpage can be accessed by opening the `index.html` file.
+The webpage can be accessed by opening the `index.html` file. Enter 6 or more numbers, separated by a comma each and click to fetch data!
 
 ## License
 [MIT License](https://github.com/tfonji/Movie-Trailer-Website/blob/master/LICENSE)
